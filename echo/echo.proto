@@ -1,0 +1,14 @@
+syntax = "proto3";
+package echo;
+//protoc --go_out=plugins=grpc:. echo.proto
+message EchoReq {
+    string msg = 1;
+}
+
+message EchoRes {
+    string msg = 1;
+}
+//服务名是Echo
+service Echo {
+    rpc echo (EchoReq) returns (EchoRes);
+}

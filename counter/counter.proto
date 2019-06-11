@@ -1,0 +1,16 @@
+syntax = "proto3";
+//protoc --go_out=plugins=grpc:. counter.proto
+package counter;
+
+message CountReq {
+    int64 start = 1;
+}
+
+message CountRes {
+    int64 num = 1;
+}
+//实现一个 Counter 服务，客户端传过来一个数字，服务端从这个数字开始，不停地向下计数返回
+//定义一个流式的 rpc 只需要在返回的字段前加一个 stream 关键字就可以
+service Counter {
+    rpc count (CountReq) returns (stream CountRes);
+}
